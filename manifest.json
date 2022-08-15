@@ -1,0 +1,16 @@
+{
+  "name": "Afterthought notes",
+  "description": "Simple day-to-day notes to keep track of your daily activity",
+  "version": "1.0",
+  "manifest_version": 3,
+  "author": "Thomas Bay-Jørgensen - Thomasbayy @ GitHub",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "interface.html"
+  }
+}

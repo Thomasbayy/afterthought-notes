@@ -1,0 +1,38 @@
+#textarea {
+    width: 400px;
+    height: 400px;
+    resize: none;
+    white-space: pre-wrap;
+}
+
+.date-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+#date-display {
+    margin: 0 12px
+}
+
+#back-button, #forward-button {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 50%;
+}
+
+#back-button:hover, #forward-button:hover {
+    background-color: #f9f9f9;
+}
+
+.invisible {
+    visibility: hidden;
+    pointer-events: none;
+}
