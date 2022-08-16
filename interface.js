@@ -66,8 +66,10 @@ function initDailyNotes(notes) {
 function renderCurrentNote() {
     if (currentNote.date === formattedToday) {
         document.getElementById('textarea').readOnly = false;
+        document.getElementById('textarea').classList.remove('textarea--readonly');
     } else {
         document.getElementById('textarea').readOnly = true;
+        document.getElementById('textarea').classList.add('textarea--readonly');
     }
     document.getElementById('textarea').value = currentNote.content;
     document.getElementById('date-display').innerText = currentNote.date;
@@ -94,6 +96,10 @@ function writeToNote(text) {
 function saveDailyNote(text) {
     chrome.storage.sync.get(['dailyNotes'], function(result) {
         const newNotes = [...result.dailyNotes];
+        // limit to 10 notes
+        if (newNotes.length > 10) {
+            newNotes.shift();
+        }
         newNotes[newNotes.length - 1].content = text;
         chrome.storage.sync.set({'dailyNotes': newNotes});
     });

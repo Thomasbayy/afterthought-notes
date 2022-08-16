@@ -1,15 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 0;
+    --color-green: #02bd6d;
+    --color-black: #303030;
+    --color-green-lighter: #8ad3a3;
+    --color-grey: #f4f4f4;
+    --color-grey-dark: #707070;
+}
+
+.title {
+    font-size: 20px;
+    color: var(--color-green);
+    margin: 16px
+}
+
+.title--black {
+    font-size: 16px;
+    color: var(--color-black);
+}
+
+.mode-title {
+    font-size: 16px;
+    color: var(--color-black);
+    text-align: center;
+}
+
+.mode-description {
+    font-size: 12px;
+    color: var(--color-grey-dark);
+    margin-left: 8px;
+}
+
 #textarea {
     width: 400px;
     height: 400px;
     resize: none;
     white-space: pre-wrap;
+    background-color: #f9f9f9;
+    padding: 16px;
+    border: none;
+    border-top: 2px solid var(--color-green-lighter);
+}
+
+#textarea:focus {
+    outline: none;
+}
+
+.textarea--readonly {
+    border-top: 2px solid var(--color-grey) !important;
+    color: var(--color-grey-dark) !important;
 }
 
 .date-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 }
 
 #date-display {
