@@ -8,8 +8,8 @@ let canGoBack = false;
 let canGoForward = false;
 
 onLoad();
-function onLoad() {
-    addNoteForTodayIfMissing();
+async function onLoad() {
+    await addNoteForTodayIfMissing();
     fetchDailyNotes();
     addTextEventListeners();
 }
@@ -29,22 +29,29 @@ function addTextEventListeners() {
 }
 
 function addNoteForTodayIfMissing() {
-    chrome.storage.sync.get(['dailyNotes'], function(result) {
-        if (!result.dailyNotes || result.dailyNotes.length === 0) {
-            chrome.storage.sync.set({'dailyNotes': [{
-                date: formattedToday,
-                content: '',
-            }]});
-        } else {
-            const todaysNote = result.dailyNotes.find(note => note.date === formattedToday);
-            if (!todaysNote) {
-                chrome.storage.sync.set({'dailyNotes': [...result.dailyNotes, {
+    return new Promise(async (resolve) => {
+        await chrome.storage.sync.get(['dailyNotes'], async function(result) {
+            if (!result.dailyNotes || result.dailyNotes.length === 0) {
+                await chrome.storage.sync.set({'dailyNotes': [{
                     date: formattedToday,
                     content: '',
                 }]});
+                resolve();
+            } else {
+                const todaysNote = result.dailyNotes.find(note => note.date === formattedToday);
+                if (!todaysNote) {
+                    await chrome.storage.sync.set({'dailyNotes': [...result.dailyNotes, {
+                        date: formattedToday,
+                        content: '',
+                    }]});
+                    resolve();
+                } else {
+                    resolve();
+                }
             }
-        }
-    });
+        });
+    })
+
 }
 
 function fetchDailyNotes() {
