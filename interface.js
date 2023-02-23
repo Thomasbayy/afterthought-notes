@@ -54,6 +54,13 @@ function addNoteForTodayIfMissing() {
 
 }
 
+function updateEntriesUntilDelete() {
+    const allNotesCount = allNotes.length;
+    const totalMissing = 6 - allNotesCount;
+    const entriesUntilDelete = currentNoteIndex + 1 + totalMissing;
+    document.getElementById('delete-time').innerText = `Deletes after ${entriesUntilDelete} more ${entriesUntilDelete === 1 ? 'entry' : 'entries'}`;
+}
+
 function fetchDailyNotes() {
     chrome.storage.sync.get(['dailyNotes'], function(result) {
         initDailyNotes(result.dailyNotes);
@@ -91,6 +98,7 @@ function renderCurrentNote() {
     } else {
         document.getElementById('forward-button').classList.add('invisible');
     }
+    updateEntriesUntilDelete();
 }
 
 function writeToNote(text) {

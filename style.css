@@ -60,7 +60,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 0;
 }
 
 #date-display {
@@ -68,8 +68,8 @@ body {
 }
 
 #back-button, #forward-button {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,4 +86,11 @@ body {
 .invisible {
     visibility: hidden;
     pointer-events: none;
+}
+
+#delete-time {
+    text-align: center;
+    margin-bottom: 4px;
+    font-size: 10px;
+    color: #707070;
 }
