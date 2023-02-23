@@ -42,7 +42,7 @@ body {
     resize: none;
     white-space: pre-wrap;
     background-color: #f9f9f9;
-    padding: 16px;
+    padding: 16px 16px 0 16px;
     border: none;
     border-top: 2px solid var(--color-green-lighter);
 }
@@ -54,6 +54,22 @@ body {
 .textarea--readonly {
     border-top: 2px solid var(--color-grey) !important;
     color: var(--color-grey-dark) !important;
+}
+
+.status-area {
+    padding: 16px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -4px;
+}
+
+#deletes-in {
+    color: #ccc;
+}
+
+#space-left {
+    color: #ccc;
 }
 
 .date-container {

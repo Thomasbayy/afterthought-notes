@@ -6,6 +6,7 @@ let currentNote = null;
 let saveTimeout = null;
 let canGoBack = false;
 let canGoForward = false;
+const CHARS_PER_NOTE = 1000;
 
 onLoad();
 async function onLoad() {
@@ -98,13 +99,21 @@ function renderCurrentNote() {
     } else {
         document.getElementById('forward-button').classList.add('invisible');
     }
+
+    updateDeletesInDisplay();
+    updateSpaceLeftDisplay(currentNote.content);
     updateEntriesUntilDelete();
 }
 
 function writeToNote(text) {
+    const textToSave = text.slice(0, CHARS_PER_NOTE);
+    if (text.length > CHARS_PER_NOTE) {
+        document.getElementById('textarea').value = textToSave;
+    }
+    updateSpaceLeftDisplay(textToSave);
     clearTimeout(saveTimeout);
     saveTimeout = setTimeout(() => {
-        saveDailyNote(text);
+        saveDailyNote(textToSave);
     }, 300)
 }
 
@@ -138,4 +147,15 @@ function goForward() {
         canGoForward = false;
     }
     renderCurrentNote();
+}
+
+function updateSpaceLeftDisplay(text) {
+    const element = document.getElementById("space-left");
+    element.innerHTML = `${text.length} / ${CHARS_PER_NOTE}`;
+}
+
+function updateDeletesInDisplay() {
+    const element = document.getElementById("deletes-in");
+    const entriesUntilDelete = ENTRIES_BEFORE_DELETE - allNotes.length + currentNoteIndex + 1;
+    element.innerHTML = `Deletes in ${entriesUntilDelete} entries`;
 }
