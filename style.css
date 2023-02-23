@@ -64,19 +64,11 @@ body {
     margin-top: -4px;
 }
 
-#deletes-in {
-    color: #ccc;
-}
-
-#space-left {
-    color: #ccc;
-}
-
 .date-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0;
+    margin-bottom: 8px;
 }
 
 #date-display {
@@ -108,5 +100,9 @@ body {
     text-align: center;
     margin-bottom: 4px;
     font-size: 10px;
-    color: #707070;
+    color: #aaa;
+}
+
+#space-left {
+    color: #aaa;
 }

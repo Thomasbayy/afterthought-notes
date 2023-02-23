@@ -100,7 +100,6 @@ function renderCurrentNote() {
         document.getElementById('forward-button').classList.add('invisible');
     }
 
-    updateDeletesInDisplay();
     updateSpaceLeftDisplay(currentNote.content);
     updateEntriesUntilDelete();
 }
@@ -119,9 +118,9 @@ function writeToNote(text) {
 
 function saveDailyNote(text) {
     chrome.storage.sync.get(['dailyNotes'], function(result) {
-        const newNotes = [...result.dailyNotes];
-        // limit to 10 notes
-        if (newNotes.length > 10) {
+        const newNotes = [...result.dailyNotes].filter(note => note.date === formattedToday || note.content !== '')
+        // limit to 6 notes
+        if (newNotes.length > 6) {
             newNotes.shift();
         }
         newNotes[newNotes.length - 1].content = text;
@@ -152,10 +151,4 @@ function goForward() {
 function updateSpaceLeftDisplay(text) {
     const element = document.getElementById("space-left");
     element.innerHTML = `${text.length} / ${CHARS_PER_NOTE}`;
-}
-
-function updateDeletesInDisplay() {
-    const element = document.getElementById("deletes-in");
-    const entriesUntilDelete = ENTRIES_BEFORE_DELETE - allNotes.length + currentNoteIndex + 1;
-    element.innerHTML = `Deletes in ${entriesUntilDelete} entries`;
 }
